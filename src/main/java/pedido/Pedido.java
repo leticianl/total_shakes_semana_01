@@ -33,13 +33,16 @@ public class Pedido{
     }
 
     public void adicionarItemPedido(ItemPedido itemPedidoAdicionado){
-        //TODO
+        if(this.itens.contains(itemPedidoAdicionado.getShake())){
+            itemPedidoAdicionado.setQuantidade(itemPedidoAdicionado.getQuantidade() + 1);
+        }
+        this.itens.add(itemPedidoAdicionado);
     }
 
     public boolean removeItemPedido(ItemPedido itemPedidoRemovido) {
         //substitua o true por uma condição
-        if (true) {
-            //TODO
+        if (itens.contains(itemPedidoRemovido)) {
+            this.itens.remove(itemPedidoRemovido);
         } else {
             throw new IllegalArgumentException("Item nao existe no pedido.");
         }
