@@ -1,4 +1,4 @@
-package Armazem;
+package armazem;
 
 import ingredientes.Fruta;
 import ingredientes.Ingrediente;
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ArmazemTest {
@@ -50,17 +52,16 @@ public class ArmazemTest {
             Assertions.assertFalse(armazem.getEstoque().containsKey(ingredienteTest));
     }
 
-
-
-    @Test
-    void adicionarQuantidadeDoIngredienteEmEstoque(){
+    @ParameterizedTest
+    @CsvSource(value = "9, 9")
+    void adicionarQuantidadeDoIngredienteEmEstoque(int quatidadeParaAdicionar, int total){
 
         Ingrediente ingredienteTest = new Fruta(TipoFruta.Morango);
         armazem.cadastarIngredienteEmEstoque(ingredienteTest);
-        armazem.adicionarQuantidadeDoIngredienteEmEstoque(ingredienteTest, 9);
-        // como fazer o assert para ver se foi cadastrado?
+        armazem.adicionarQuantidadeDoIngredienteEmEstoque(ingredienteTest, quatidadeParaAdicionar);
+
         Assertions.assertTrue(armazem.getEstoque().containsKey(ingredienteTest));
-        Assertions.assertEquals(9,armazem.consultarQuantidadeDoIngredienteEmEstoque(ingredienteTest));
+        Assertions.assertEquals(total, armazem.consultarQuantidadeDoIngredienteEmEstoque(ingredienteTest));
     }
 
     @Test

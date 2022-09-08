@@ -1,4 +1,4 @@
-package Armazem;
+package armazem;
 
 import ingredientes.Ingrediente;
 
